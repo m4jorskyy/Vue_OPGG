@@ -1,7 +1,8 @@
 # Vue OP.GG Clone
 
 Minimalistyczna aplikacja webowa inspirowana OP.GG
-Wyszukuj graczy League of Legends i przeglądaj ich statystyki meczowe</p>
+
+Wyszukuj graczy League of Legends i przeglądaj ich statystyki meczowe
 
 ## Opis projektu
 
