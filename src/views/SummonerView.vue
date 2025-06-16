@@ -2,19 +2,17 @@
   <div>
     <h1>Profil: {{ gameName }}#{{ tagLine }}</h1>
 
-    <!-- stan ładowania -->
     <p v-if="loading">Ładowanie danych…</p>
 
-    <p>{{ puuid }}</p>
-
-    <!-- błąd -->
     <p v-if="error">{{ error }}</p>
 
-    <!-- gdy mamy mecze -->
     <div v-if="!loading && !error">
-      <!-- tu później komponenty MatchList i StatsSummary -->
-      <div v-for="match in matches" :key="match.id">
-        {{ match }} <!-- na początek wypisz surowe dane -->
+      <div v-for="match in matches" :key="match.matchId">
+        <span>{{ match.win ? 'WIN' : 'LOSS'}} &nbsp</span>
+        <span>Czas gry: {{ Math.floor(match.gameDuration / 60) }}:{{(match.gameDuration % 60) > 10 ? (match.gameDuration % 60) : "0" + (match.gameDuration % 60) }} &nbsp</span>
+        <span>Nazwa bohatera: {{ match.championName }} &nbsp</span>
+        <span>Aleja: {{ match.lane }} &nbsp</span>
+        <span>KDA: {{ match.kills }}/{{ match.deaths }}/{{match.assists}}</span>
       </div>
     </div>
   </div>
@@ -23,8 +21,9 @@
 <script>
 import {
   getPuuid,
-  //getMatchHistory,
-  //getMatchDetails
+  getMatchIds,
+  getMatchDetails,
+    extractMatchStats
 } from '../services/riotApi.js';
 
 export default {
@@ -32,19 +31,30 @@ export default {
   data() {
     return {
       gameName: this.$route.params.gameName,
-      tagLine:  this.$route.params.tagLine,
-      puuid:    null,
-      matches:  [],
-      loading:  false,
-      error:    null
+      tagLine: this.$route.params.tagLine,
+      puuid: null,
+      matches: [],
+      loading: false,
+      error: null
     };
   },
   async created() {
     this.loading = true;
     try {
-      // 1. pobierz puuid
       const summoner = await getPuuid(this.gameName, this.tagLine);
-      this.puuid = summoner.puuid; // sprawdź klucz w konsoli
+      this.puuid = summoner.puuid;
+
+      const matchIds = await getMatchIds(this.gameName, this.tagLine);
+
+      let statsList = [];
+
+      for (const matchId of matchIds) {
+        const raw = await getMatchDetails(this.puuid, matchId);
+        const stats = await extractMatchStats(raw, this.puuid);
+        statsList.push(stats)
+      }
+
+      this.matches = statsList;
 
     } catch (e) {
       this.error = e.message;
