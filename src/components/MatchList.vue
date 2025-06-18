@@ -18,15 +18,24 @@ export default {
 </script>
 
 <template>
-  <h2 v-if="matches.length === 0">
-    Brak ostatnich meczów
-  </h2>
+  <div class="match-list">
+    <h2 v-if="matches.length === 0">
+      Brak ostatnich meczów
+    </h2>
 
-  <h2 v-else>
-    Ostatnie mecze
-  </h2>
-  <MatchItem
-  v-for="match in matches"
-  :key="match.matchId"
-  :match="match" />
+    <h2 v-else>
+      Ostatnie mecze
+    </h2>
+    <MatchItem
+        v-for="match in matches"
+        :key="match.matchId"
+        :match="match" />
+  </div>
 </template>
+
+<style scoped>
+.match-list h2 {
+  margin-bottom: var(--spacing);
+}
+
+</style>

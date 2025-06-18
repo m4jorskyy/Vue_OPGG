@@ -50,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <h1>Profil: {{ gameName }}#{{ tagLine }}</h1>
 
     <p v-if="loading">Ładowanie danych…</p>

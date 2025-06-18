@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-  <div class="statsSummary">
+  <div class="stats-summary">
     <h2>
       Podsumowanie
     </h2>
@@ -55,3 +55,21 @@ export default {
 
   </div>
 </template>
+
+<style scoped>
+.stats-summary {
+  background: var(--color-card);
+  padding: var(--spacing);
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: var(--spacing);
+}
+.stats-summary h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+.stats-summary p {
+  margin-bottom: 0.25rem;
+}
+
+</style>

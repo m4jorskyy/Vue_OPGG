@@ -25,8 +25,8 @@ export default {
 </script>
 
 <template>
-  <div class="matchItem">
-    <span>{{ resultLabel }} &nbsp</span>
+  <div class="match-item">
+    <span :class="['result', match.win ? 'win' : 'loss']">{{ resultLabel }} &nbsp</span>
     <span>Czas gry: {{ formattedDuration }} &nbsp</span>
     <span>Nazwa bohatera: {{ match.championName }} &nbsp</span>
     <span>Aleja: {{ match.lane }} &nbsp</span>
@@ -34,3 +34,26 @@ export default {
   </div>
 
 </template>
+
+<style scoped>
+.match-item {
+  background: var(--color-card);
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing);
+  padding: var(--spacing);
+  margin-bottom: var(--spacing);
+  align-items: center;
+}
+
+.result {
+  font-weight: bold;
+  color: var(--color-win);
+}
+
+.loss {
+  color: var(--color-loss);
+}
+</style>

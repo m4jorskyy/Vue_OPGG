@@ -1,0 +1,29 @@
+:root {
+    --color-bg: #f9fafb;
+    --color-card: #ffffff;
+    --color-text: #1f2937;
+    --color-win: #16a34a;
+    --color-loss: #dc2626;
+    --spacing: 1rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing);
+}

@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <form @submit.prevent="onSubmit">
+  <form class="search-bar" @submit.prevent="onSubmit">
     <input v-model="gameName"
            type="text"
            placeholder="Podaj summoner name"
@@ -43,3 +43,26 @@ export default {
     <button type="submit">Szukaj</button>
   </form>
 </template>
+
+<style scoped>
+.search-bar {
+  display: flex;
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+.search-bar input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+.search-bar button {
+  padding: 0.5rem 1rem;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+</style>
