@@ -21,9 +21,9 @@ export async function getPuuid(gameName, tagLine) {
     return await response.json();
 }
 
-export async function getMatchIds(gameName, tagLine) {
+export async function getMatchIds(gameName, tagLine, start = 0, count = 50) {
     const {puuid} = await getPuuid(gameName, tagLine);
-    const urlRequest = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?count=10`;
+    const urlRequest = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=${count}`;
     const response = await fetch(urlRequest, {
         method: 'GET',
         headers: {

@@ -27,3 +27,21 @@ body {
     margin: 0 auto;
     padding: var(--spacing);
 }
+
+.main-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.main-column {
+    flex: 2;
+}
+
+.sidebar {
+    flex: 1;
+    min-width: 220px;
+    max-width: 300px;
+    position: sticky;
+    top: 1rem;
+}
