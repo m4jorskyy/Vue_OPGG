@@ -22,7 +22,7 @@ export async function getPuuid(gameName, tagLine) {
 }
 
 export async function getMatchIds(gameName, tagLine) {
-    const { puuid } = await getPuuid(gameName, tagLine);
+    const {puuid} = await getPuuid(gameName, tagLine);
     const urlRequest = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?count=10`;
     const response = await fetch(urlRequest, {
         method: 'GET',
@@ -60,7 +60,7 @@ export async function getMatchDetails(puuid, matchId) {
 export async function extractMatchStats(rawMatch, puuid) {
     const gameDuration = rawMatch.info.gameDuration;
     const participant = rawMatch.info.participants.find(p => p.puuid === puuid);
-    const { kills, deaths, assists, championName, lane, win } = participant;
+    const {kills, deaths, assists, championName, lane, win} = participant;
 
-    return { gameDuration, kills, deaths, assists, championName, lane, win }
+    return {gameDuration, kills, deaths, assists, championName, lane, win}
 }

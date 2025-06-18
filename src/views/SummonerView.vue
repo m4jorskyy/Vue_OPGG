@@ -1,33 +1,17 @@
-<template>
-  <div>
-    <h1>Profil: {{ gameName }}#{{ tagLine }}</h1>
-
-    <p v-if="loading">Ładowanie danych…</p>
-
-    <p v-if="error">{{ error }}</p>
-
-    <div v-if="!loading && !error">
-      <div v-for="match in matches" :key="match.matchId">
-        <span>{{ match.win ? 'WIN' : 'LOSS'}} &nbsp</span>
-        <span>Czas gry: {{ Math.floor(match.gameDuration / 60) }}:{{(match.gameDuration % 60) > 10 ? (match.gameDuration % 60) : "0" + (match.gameDuration % 60) }} &nbsp</span>
-        <span>Nazwa bohatera: {{ match.championName }} &nbsp</span>
-        <span>Aleja: {{ match.lane }} &nbsp</span>
-        <span>KDA: {{ match.kills }}/{{ match.deaths }}/{{match.assists}}</span>
-      </div>
-    </div>
-  </div>
-</template>
-
+<!--SummonerView-->
 <script>
 import {
   getPuuid,
   getMatchIds,
   getMatchDetails,
-    extractMatchStats
+  extractMatchStats
 } from '../services/riotApi.js';
+import MatchList from "../components/MatchList.vue";
+import StatsSummary from "../components/StatsSummary.vue";
 
 export default {
   name: 'SummonerView',
+  components: {StatsSummary, MatchList},
   data() {
     return {
       gameName: this.$route.params.gameName,
@@ -64,3 +48,18 @@ export default {
   }
 };
 </script>
+
+<template>
+  <div>
+    <h1>Profil: {{ gameName }}#{{ tagLine }}</h1>
+
+    <p v-if="loading">Ładowanie danych…</p>
+
+    <p v-if="error">{{ error }}</p>
+
+    <div v-if="!loading && !error">
+      <MatchList :matches="matches"/>
+      <StatsSummary :matches="matches" />
+    </div>
+  </div>
+</template>
