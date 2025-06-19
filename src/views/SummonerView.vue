@@ -9,10 +9,11 @@ import {
 import MatchList from "../components/MatchList.vue";
 import StatsSummary from "../components/StatsSummary.vue";
 import db from '../db/matchCache.js';
+import StatsByChampion from "../components/StatsByChampion.vue";
 
 export default {
   name: 'SummonerView',
-  components: {StatsSummary, MatchList},
+  components: {StatsByChampion, MostPlayed: StatsByChampion, StatsSummary, MatchList},
   data() {
     return {
       gameName: this.$route.params.gameName,
@@ -95,6 +96,7 @@ export default {
       </div>
       <div class="sidebar">
         <StatsSummary :matches="allMatches" />
+        <StatsByChampion :matches="allMatches" />
       </div>
     </div>
 

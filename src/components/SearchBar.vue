@@ -29,19 +29,21 @@ export default {
 </script>
 
 <template>
-  <form class="search-bar" @submit.prevent="onSubmit">
-    <input v-model="gameName"
-           type="text"
-           placeholder="Podaj summoner name"
-           required/>
-    <br>
-    <input v-model="tagLine"
-           type="text"
-           placeholder="Podaj tagline"
-           required/>
-    <br>
-    <button type="submit">Szukaj</button>
-  </form>
+  <div class="container">
+    <form class="search-bar" @submit.prevent="onSubmit">
+      <input v-model="gameName"
+             type="text"
+             placeholder="Podaj summoner name"
+             required/>
+      <br>
+      <input v-model="tagLine"
+             type="text"
+             placeholder="Podaj tagline"
+             required/>
+      <br>
+      <button type="submit">Szukaj</button>
+    </form>
+  </div>
 </template>
 
 <style scoped>
