@@ -29,7 +29,8 @@ export default {
     <MatchItem
         v-for="match in matches"
         :key="match.matchId"
-        :match="match" />
+        :match="match"
+        @select="$emit('select', $event)"/>
   </div>
 </template>
 

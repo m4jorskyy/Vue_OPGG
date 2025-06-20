@@ -1,11 +1,6 @@
 <!--SummonerView-->
 <script>
-import {
-  getPuuid,
-  getMatchIds,
-  getMatchDetails,
-  extractMatchStats
-} from '../services/riotApi.js';
+import {extractMatchStats, getMatchDetails, getMatchIds, getPuuid} from '../services/riotApi.js';
 import MatchList from "../components/MatchList.vue";
 import StatsSummary from "../components/StatsSummary.vue";
 import db from '../db/matchCache.js';
@@ -25,7 +20,9 @@ export default {
       allMatches: [],
       visibleMatches: [],
       nextIndex: 0,
-      pageSize: 5
+      pageSize: 5,
+      selectedMatch: null,
+      selectedLoading: false
     };
   },
   async created() {
@@ -74,6 +71,17 @@ export default {
       const end = this.nextIndex + this.pageSize;
       this.visibleMatches = this.allMatches.slice(0, end);
       this.nextIndex = end;
+    },
+    async onSelectMatch(matchId) {
+      this.selectedLoading = true;
+      try {
+        this.selectedMatch = await getMatchDetails(this.puuid, matchId);
+        this.selectedLoading = false;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.selectedLoading = false;
+      }
     }
   }
 };
@@ -89,7 +97,11 @@ export default {
 
     <div v-if="!loading && !error" class="main-layout">
       <div class="main-column">
-        <MatchList :matches="visibleMatches"/>
+        <MatchList :matches="visibleMatches" @select="onSelectMatch"/>
+        <div v-if="selectedLoading">Ładowanie szczegółów meczu…</div>
+        <div v-else-if="selectedMatch">
+          <pre>{{ selectedMatch }}</pre>
+        </div>
         <button class="load-more-btn" @click="showMore" :disabled="nextIndex >= allMatches.length">
           Załaduj więcej
         </button>

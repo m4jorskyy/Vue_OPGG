@@ -58,9 +58,10 @@ export async function getMatchDetails(puuid, matchId) {
 }
 
 export async function extractMatchStats(rawMatch, puuid) {
+    const matchId = rawMatch.metadata.matchId;
     const gameDuration = rawMatch.info.gameDuration;
     const participant = rawMatch.info.participants.find(p => p.puuid === puuid);
-    const {kills, deaths, assists, championName, lane, win} = participant;
+    const {kills, deaths, assists, championName, lane, win, teamPosition} = participant;
 
-    return {gameDuration, kills, deaths, assists, championName, lane, win}
+    return {matchId, gameDuration, kills, deaths, assists, championName, lane, win, teamPosition}
 }
