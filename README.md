@@ -136,7 +136,7 @@ Projekt jest dostępny na licencji MIT - szczegóły w pliku [LICENSE].
 ## Autor
 
 - GitHub: [@m4jorskyy](https://github.com/m4jorskyy)
-- Kontakt: [Vue_OPGG](https://github.com/m4jorskyy/Vue_OPGG)
+- Kontakt: [igor.suchodolskii@gmail.com](igor.suchodolskii@gmail.com)
 
 ---
 
