@@ -136,7 +136,7 @@ Projekt jest dostępny na licencji MIT - szczegóły w pliku [LICENSE].
 ## Autor
 
 - GitHub: [@m4jorskyy](https://github.com/m4jorskyy)
-- Kontakt: [igor.suchodolskii@gmail.com](igor.suchodolskii@gmail.com)
+- Kontakt: igor.suchodolskii@gmail.com
 
 ---
 
